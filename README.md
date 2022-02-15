@@ -1,33 +1,18 @@
-# TaxAdda Backend Assignment
+invoice-app
 
-As part of our application process, we'd like to see what you can produce by giving you a small assignment. It should take you no more than a few hours to complete the assignment, but any extra polish or features you might want to put in will not go unnoticed.
+* create invoice
+![image](https://user-images.githubusercontent.com/74768389/154010221-6369082f-4dc2-4dba-bccd-6143fa09ea0c.png)
+![image](https://user-images.githubusercontent.com/74768389/154011640-aab77168-c60c-478a-869a-2408b3e483f1.png)
 
-## The assignment
 
-We would like you to create the backend for an invoicing app. The APIs it should include:
+* view invoices
+![image](https://user-images.githubusercontent.com/74768389/154011767-50751f72-cd01-4687-bf24-799349d4b87a.png)
 
-- [ ] Create a new invoice
-  - [ ] Add line items to the invoice. Line items may include hours of work at a certain rate, work-related expenses, materials, labor, etc.
-  - [ ] Add notes to the invoice, including possibly how to pay it, where to send checks, etc.
-- [ ] Ability to update the status of the invoice
-- [ ] Send the invoice via email
-- [ ] View invoices including status (paid, outstanding, late, etc.)
+* update status
+![image](https://user-images.githubusercontent.com/74768389/154011918-ee0d5115-3c3a-47ad-b047-6e82684ca7b0.png)
 
-#### Extra credit features
+* send invoice in mail
+![image](https://user-images.githubusercontent.com/74768389/154012368-70722f79-c142-47bd-9304-8c6b420926a9.png)
 
-- [ ] Add a due date to an invoice
-- [ ] View late invoices, or even better, alert when an invoice is late
-- [ ] Tests
-- [ ] API Documentation
-- [ ] Data Validation
 
-## Requirements
 
-You should use the following tools to accomplish this task:
-
-- Express
-- Node.js
-
-If you have any questions, please ask!
-
-To complete your assignment, please fork this repo and commit your work to your fork. When you are ready for us to look at it, give us access to your fork so we can review and run it.

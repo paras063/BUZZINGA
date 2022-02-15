@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/createInv.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title><%=pageTitle%> </title>
+
+</head>
+
+
+
+<body>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center mt-2">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h1 style="font-weight: bolder; font-size: 3.5rem; color: rgb(253, 253, 253);letter-spacing: 4px;outline:ridge;">
+                    New Invoice
+                </h1>
+                <div class="card">
+                    <form class="form-card border p-4 rounded" id="invoice" action="/view">
+                        <div class="row justify-content-between text-left mt-3">
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Invoice Date<span class="text-danger">
+                                        *</span></label>
+                                <input type="date" id="invoiceDate" name="invoiceDate" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Due Date<span class="text-danger">
+                                        *</span></label>
+                                <input type="date" id="dueDate" name="dueDate" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Payment terms<span class="text-danger">
+                                        *</span></label>
+                                <select name="pTerms" id="pTerms" style="color: gray">
+                                    <option hidden selected>Select terms</option>
+                                    <option value="Net 30 days">Net 30 days</option>
+                                    <option value="net 60 days">Net 60 days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(206, 206, 206)" />
+                        <h6 class="text-left" style="color: #2e5fff; margin-bottom: 18px">
+                            BILL FROM
+                        </h6>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">
+                                    Street Address<span class="text-danger"> *</span>
+                                </label>
+                                <textarea id="address" name="address"></textarea>
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">City<span class="text-danger"> *</span></label>
+                                <input type="text" id="city" name="city" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Pincode<span class="text-danger">
+                                        *</span></label>
+                                <input type="text" id="pincode" name="pincode" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Country<span class="text-danger">
+                                        *</span></label>
+                                <input type="text" id="country" name="country" />
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(206, 206, 206)" />
+                        <h6 class="text-left" style="color: #2e5fff; margin-bottom: 18px">
+                            BILL TO
+                        </h6>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Customer name<span class="text-danger">
+                                        *</span></label>
+                                <input type="text" id="customerName" name="customerName" placeholder="Enter Customer name" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Customer Email Id<span class="text-danger">
+                                        *</span></label>
+                                <input type="email" id="customerEmail" name="customerEmail" placeholder="Example@xyz.com" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Street Address<span class="text-danger">
+                                        *</span></label>
+                                <textarea id="customerAddress" name="customerAddress"></textarea>
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">City<span class="text-danger"> *</span></label>
+                                <input type="text" id="customerCity" name="customerCity" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Pincode<span class="text-danger">
+                                        *</span></label>
+                                <input type="text" id="customerPincode" name="customerPincode" />
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Country<span class="text-danger">
+                                        *</span></label>
+                                <input type="text" id="customerCountry" name="customerCountry" />
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(201, 201, 201)" />
+                        <h6 class="text-left" style="color: #2e5fff; margin-bottom: 18px">
+                            ITEM LIST
+                        </h6>
+                        <div class="row justify-content-between text-left ml-1 mr-1">
+                            <table class="table activitites">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-uppercase">item</th>
+                                        <th scope="col" class="text-uppercase">Quantity</th>
+                                        <th scope="col" class="text-uppercase">unit price(₹)</th>
+                                        <th scope="col" class="text-uppercase">Total(₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-group mt-5">
+                            <hr>
+                            <input type="text" name="item_des" id="item_des" placeholder="Item description">
+                            <input type="number" id="item_qty" placeholder="Quantity" min="0">
+                            <input type="number" min="0" id="item_price" placeholder="Unit price">
+                        </div>
+                        <div class="form-group d-flex justify-content-end mr-5">
+                            <button type="button" id="addItemBtn" class="btn-primary btn-success">
+                                Add Item
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="row ">
+                            <div class="col">
+                                <div class="row justify-content-between mb-3 ">
+                                    <div class="col-3">
+                                        <p class="mb-1"><b>Subtotal:-</b></p>
+                                    </div>
+                                    <div class="flex-sm-col col-auto">
+                                        <p class="mb-1" id="subtotal"></p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between mb-2">
+                                    <div class="col-3 mt-2">
+                                        <p class="mb-1"><b>Tax(%):-</b></p>
+                                    </div>
+                                    <div class="flex-sm-col col-auto">
+                                        <input class="form-control input-sm ml-5" type="number" min="1" id="tax" name="tax" style="width: 4rem;">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row ml-4 mr-1 mt-5">
+                                        <p>Note:</p>
+                                        <input class="form-control input-sm" id="note" type="text" name="note" placeholder="Add Note(optional)">
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="form-group col-sm-6">
+                                <button type="submit" class="btn-block"
+                                    style="background-color: #2e5fff; color: white; width:100%;">
+                                    submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/invoiceClient.js"></script>
+</body>
+
+</html>
