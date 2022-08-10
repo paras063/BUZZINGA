@@ -1,13 +1,4 @@
-BUZZINGA aims to provide an online solution (web app) for run and manage a Business online.
-It tracks all the information of Payments, Expenses ,Invoices , Sales , Employees , Customers etc.
-Manage the information of Payments Shows the information and description of the Stock, Sales
-All the fields such as Stock, Sales, Products are validated and does not take invalid values
-It generates the invoice and also Email it to the customer.
-You can also download pdf of invoice.
-To increase efficiency of managing the Stock, Payments It deals with monitoring the information and transactions of Discounts.
-Manage the information of Stock
-Editing, adding and updating of Records is improved which results in proper resource management of Stock data.
-Integration of all records of customer.
+
 ![image](https://user-images.githubusercontent.com/74768389/183908004-228e8b53-4ad1-4095-85e2-6147fadf0f8d.png)
 
 
