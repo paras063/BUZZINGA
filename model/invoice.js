@@ -1,47 +1,29 @@
 const mongoose=require('mongoose');
-const { isEmail }= require('validator');
 const invoiceSchema = new mongoose.Schema({
     invoiceDate:{
         type:Date,
         required:true,
         default: Date.now
     },
-    PaymentTerms:{
-        type:String,
-        required:true
-    },
     dueDate:{
         type:Date,
         required:true,
         default:Date.now
     },
-    customerName:{
-        type:String,
-        required:true,
-        trim:true,
-        minlength:3
-    },
-    customerEmail:{
-        type:String,
-        required:true,
-        trim:true,
-        validate:[isEmail,'invalid Email']
-    },
-    customerAddress:{
-        type : String,
-        required:true,
-        trim:true
-    },
-    sellerAddress:{
-        type : String,
-        required:true,
-        trim:true
-    },
+    firmId:{type:mongoose.SchemaTypes.ObjectId,required:true,ref:"Firm"},
+    customerId:{type:mongoose.SchemaTypes.ObjectId,required:true,ref:"Customer"},
+    sellerId:{type:mongoose.SchemaTypes.ObjectId,required:true,ref:"User"},
     items:[
         {
+        itemId:{
+            type:mongoose.SchemaTypes.ObjectId,
+            required:true,
+            ref:"Product"
+        },
         name:{
             type:String,
-            required:true
+            required:true,
+            lowercase:true,
         },
         quantity:{
             type:Number,
@@ -62,20 +44,25 @@ const invoiceSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    discount:{
+        type:Number,
+        required:true
+    },
     totalAmt:{
         type:Number,
         required:true
     },
     status:{
         type:String,
-        enum:['paid','unpaid','overdue'],
+        enum:['paid','unpaid','overdue','half-paid'],
         default:"unpaid"
     },
     note:{
         type:String,
-        trim:true
+        trim:true,
+        default:"Thank You!"
     }
-})
+},{timestamps:true})
 
-const invoice=mongoose.model('invoice',invoiceSchema);
+const invoice=mongoose.model('Invoice',invoiceSchema);
 module.exports = invoice;

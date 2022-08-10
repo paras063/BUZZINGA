@@ -1,0 +1,174 @@
+<%-include('../includes/dashHeader.ejs')%>
+    </head>
+
+    <%-include('../includes/sidebar.ejs')%>
+        <div class="container-fluid mb-4">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800 text-center">Create Invoice</h1>
+            </div>
+
+            <div class="card p-5">
+                <div class="row">
+                    <form class="user">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-4">
+                                <label for="invoiceDate" class="ml-2 text-dark form-control-label">Invoice Date</label>
+                                <input type="date" class="form-control form-control-user" id="invoiceDate"
+                                    name="invoiceDate" placeholder="Invoice date" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="dueDate" class="ml-2 text-dark form-control-label">Due Date</label>
+                                <input type="date" class="form-control form-control-user" id="dueDate" name="dueDate"
+                                    placeholder="Due date" />
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(206, 206, 206)" />
+                        <h6 class="text-left" style="color: #ea11cd; margin-bottom: 18px">
+                            BILL FROM
+                        </h6>
+                        <div class="form-group row">
+                            <div class="col mb-3">
+                                <input type="text" id="firmId" class="form-control form-control-user" list="firmList" id="firmId" autocomplete="off"  placeholder="Choose Firm"/>
+                                <datalist id="firmList">
+                                    <%firms.forEach((firm)=>{%>
+                                        <option value="<%=firm._id%>"><%=firm.name%></option>
+                                    <%})%>
+                                </datalist>
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(206, 206, 206)" />
+                        <h6 class="text-left" style="color: #ea11cd; margin-bottom: 18px">
+                            BILL TO
+                        </h6>
+                        <div class="form-group row ">
+                            <div class="col-sm-6 mb-3">
+                                <input type="text" class="form-control form-control-user" id="firstName"
+                                    name="customerFirstName" placeholder=" Customer First name" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="lastName"
+                                    name="customerLastName" placeholder=" Customer Last name" />
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="email" id="email" name="customerEmail"
+                                    class="form-control form-control-user" placeholder="Customer Email" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" id="contact" name="contact" class="form-control form-control-user"
+                                    placeholder="Customer Contact" />
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <textarea id="address" class="form-control form-control-user" name="customerAddress"
+                                    placeholder="Address"></textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="city" name="customerCity"
+                                    placeholder="City" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="state"
+                                    name="customerState" placeholder="State" />
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="text" class="form-control form-control-user" id="pincode"
+                                    name="customerPincode" placeholder="Pincode" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="country" name="country"
+                                    placeholder="Country" />
+                            </div>
+                        </div>
+                        <hr style="background-color: rgb(201, 201, 201)" />
+                        <h6 class="text-left" style="color: #ea11cd; margin-bottom: 18px">
+                            ITEM LIST
+                        </h6>
+                        <div class="form-group row">
+                            <table class="table activitites ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="text-uppercase">item no.</th>
+                                        <th scope="col" class="text-uppercase">item</th>
+                                        <th scope="col" class="text-uppercase">Quantity</th>
+                                        <th scope="col" class="text-uppercase">unit price(₹)</th>
+                                        <th scope="col" class="text-uppercase">Total(₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-group row">
+                            <hr>
+                            <div class="col-sm-8 mb-2">
+                                <input type="text" id="itemId" class="form-control form-control-user"
+                                    placeholder="Item Id" list="itemList" autocomplete="off">
+                                    <datalist id="itemList"></datalist> 
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control form-control-user" id="item_qty"
+                                        placeholder="Quantity" min="1">
+                            </div>
+                            <div class="col-sm-1">
+                                <button id="addItemBtn" class="btn-lg btn-primary btn-user mb-2 ">
+                                    Add Item
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row form-group">
+                            <div class="col">
+                                <div class="row justify-content-between mb-3 text-dark ">
+                                    <div class="col-3">
+                                        <p class="mb-1"><b>Subtotal:-</b></p>
+                                    </div>
+                                    <div class="flex-sm-col col-auto">
+                                        <p class="mb-1" id="subTotal"></p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between mb-2 text-dark">
+                                    <div class="col-3 mt-2">
+                                        <p class="mb-1"><b>Tax(%):-</b></p>
+                                    </div>
+                                    <div class="flex-sm-col col-auto">
+                                        <input class="form-control form-control-user" type="number" min="1" id="tax"
+                                            name="tax" style="width: 5rem;">
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between mb-2 text-dark">
+                                    <div class="col-3 mt-2">
+                                        <p class="mb-1"><b>Discount(%):-</b></p>
+                                    </div>
+                                    <div class="flex-sm-col col-auto">
+                                        <input class="form-control form-control-user" type="number" min="1" id="discount"
+                                            name="tax" style="width: 5rem;">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row form-group">
+                                    <input class="form-control form-control-user" id="note" type="text" name="note"
+                                        placeholder="Add Note(optional)">
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <button id="mainForm" class="btn btn-primary btn-user btn-block mb-3">
+                            Add Invoice
+                        </button>
+                    </form>
+                    <span align="center" class="d-none text-danger form-outline border border-secondary"
+                        id="validationFail" name="validationFail"
+                        style="display:inline-block; width: 100%;background-color: rgb(253, 180, 172);"></span>
+                    <br>
+                    <span align="center" class="d-none text-success form-outline text-center border border-secondary"
+                        id="validationSuccess" name="validationSuccess"
+                        style="display:inline-block; width: 100%; background-color: rgb(172, 253, 172);"></span>
+                </div>
+            </div>
+        </div>
+        <%-include('../includes/dashFooter.ejs')%>
+            <script src="/js/addInvoice.js"></script>
+            </body>
+            </html>

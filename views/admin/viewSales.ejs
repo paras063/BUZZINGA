@@ -1,0 +1,71 @@
+<%-include('../includes/dashHeader.ejs')%>
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    </head>
+    <%-include('../includes/sidebar.ejs')%>
+        <div class="container-fluid mb-4">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800 text-center">
+                    View Sales
+                </h1>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Date of Sale</th>
+                                    <th>Firm Name</th>
+                                    <th>Seller Name</th>
+                                    <th>Customer Name</th>
+                                    <th>Invoice Number</th>
+                                    <th>Items</th>
+                                    <th>Amount(₹)</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Date of Sale</th>
+                                    <th>Firm Name</th>
+                                    <th>Seller Name</th>
+                                    <th>Customer Name</th>
+                                    <th>Invoice Number</th>
+                                    <th>Items</th>
+                                    <th>Amount(₹)</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <%sales.forEach((sale)=>{%>
+                                    <tr>
+                                        <td><%=sale.saleDate.getDate()+"-"+sale.saleDate.getMonth()+"-"+sale.saleDate.getFullYear()%></td>
+                                        <td>
+                                            <%=sale.firmId.name%>
+                                        </td>
+                                        <td><%=sale.sellerId.firstName%> <%=sale.sellerId.lastName%></td>
+                                        <td><%=sale.customerId.firstName%> <%=sale.customerId.lastName%></td>
+                                        <td><%=sale.invoiceId._id%></td>
+                                        <td>
+                                            <%sale.items.forEach((item)=>{%>
+                                                Name:<%=item.name%> , Qty:<%=item.quantity%> , Price:₹<%=item.unitPrice%><br>
+                                        <%})%>
+                                    </td>
+                                    <td>
+                                        ₹<%=sale.totalAmt%>
+                                    </td>
+                                    </tr>
+                                <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-include('../includes/dashFooter.ejs')%>
+            <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="/js/demo/datatables-demo.js"></script>
+            </body>
+
+            </html>

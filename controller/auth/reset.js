@@ -1,0 +1,4 @@
+exports.getReset
+exports.postReset
+exports.getNewPass
+exports.postNewPass

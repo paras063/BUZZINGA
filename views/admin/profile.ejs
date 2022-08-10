@@ -1,0 +1,86 @@
+<%- include('../includes/dashHeader.ejs')%>
+</head>
+<%- include('../includes/sidebar.ejs')%>
+<div class="container-fluid mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">User profile(<%=user.typeOfUser%>)</h1>
+    </div>
+<div class="card p-4">
+    <div class="row">
+        <form class="user">
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3">
+                  <label for="firstName" class="ml-2 text-dark">First Name</label>
+                <input type="text" class="form-control form-control-user" id="firstName"
+                  placeholder="First Name" value="<%=user.firstName%>">
+              </div>
+              <div class="col-sm-6">
+                <label for="lastName" class="ml-2 text-dark">Last Name</label>
+                <input type="text" class="form-control form-control-user" id="lastName"
+                  placeholder="Last Name" value="<%=user.lastName%>">
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6 mb-3">
+                    <label for="email" class="ml-2 text-dark">Email Address</label>
+                    <input type="email" class="form-control form-control-user" id="email"
+                      placeholder="Email Address" value="<%=user.email%>">
+                </div>
+                <div class="col-sm-6">
+                    <label for="contact" class="ml-2 text-dark">Contact No.</label>
+                    <input type="tel" id="contact" placeholder="Contact Number" name="contact" class="form-control form-control-user" value="<%=user.contact%>" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col mb-3">
+                    <label for="address" class="ml-2 text-dark">Address</label>
+                    <input type="text" id="address" placeholder="Address" name="address" class="form-control form-control-user" value="<%=user.address.address%>"/>
+                </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 ">
+                <label for="city" class="ml-2 text-dark">City</label>
+                <input type="text" id="city" placeholder="City" class="form-control form-control-user" value="<%=user.address.city%>"/>
+              </div>
+              <div class="col-sm-6">
+                <label for="state" class="ml-2 text-dark">State</label>
+                <input type="text" id="state" placeholder="State" class="form-control form-control-user"value="<%=user.address.state%>" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 ">
+                <label for="country" class="ml-2 text-dark">Country</label>
+                <input type="text" id="country" placeholder="Country" class="form-control form-control-user" value="<%=user.address.country%>" />
+              </div>
+              <div class="col-sm-6 ">
+                <label for="pincode" class="ml-2 text-dark">Pincode</label>
+                <input type="text" id="pincode" placeholder="PinCode" class="form-control form-control-user" value="<%=user.address.pincode%>" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col mb-3">
+                <label for="passowrd" class="ml-2 text-dark">Password</label>
+                <input type="password" class="form-control form-control-user" id="password"
+                  placeholder="Password " value="<%=user.password%>" readonly>
+              </div>
+            </div>
+            <button id="editProfile" class="btn btn-primary btn-user btn-block mb-2 fs-6">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+            <!-- validation errors-->
+            <span align="center" class="d-none text-danger form-outline border border-secondary"
+              id="validationFail" name="validationFail"
+              style="display:inline-block; width: 100%;background-color: rgb(253, 180, 172);"></span>
+            <br>
+
+            <span align="center" class="d-none text-success form-outline text-center border border-secondary"
+              id="validationSuccess" name="validationSuccess"
+              style="display:inline-block; width: 100%; background-color: rgb(172, 253, 172);"></span>
+            <hr>
+          </form>
+    </div>
+</div>
+</div>
+
+<%- include('../includes/dashFooter.ejs')%>
+<script src="js/profile.js"></script>

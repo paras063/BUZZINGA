@@ -1,0 +1,55 @@
+<%- include('../includes/header.ejs')%>
+  <link rel="stylesheet" href="/css/home.css" </head>
+  <body style="background: linear-gradient(to left, #6190e8, #a7bfe8);">
+    <section class="" style=" width: 33%; margin:auto; margin-top:2rem;padding:4rem;">
+        <div class="text-center mb-5 fw-bold fs-1">
+            <a class="text-decoration-none text-dark" href="/"><i class="fa-solid fa-business-time"></i> BUZZINGA</a>
+        </div>        
+        <div class="col-lg-12 col-md-12 col-sm-12" style=" box-shadow: 5px 5px 6px #888888;">
+            <div class="card ">
+                <div class="card-body py-3 px-md-5 ">
+                    <!-- Register buttons -->
+                    <div class=" mb-3">
+                        <p class="fw-bold fs-5">Forgot Password</p>
+                        <hr>
+            <p class="">Don't worry, happens to best of us.</p>
+          </div>
+          <form>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="email">Your Email</label>
+              <input type="email" id="email" name="email" class="form-control" />
+            </div>
+
+            <div class="form-outline">
+                <button type="button" id="generateOtp" class="btn btn-primary btn-lg mb-3 form-control ">
+                    Generate OTP
+                </button>
+              </div>
+  
+            <!-- otp input -->
+            <div class="form-outline mb-4 d-none" id="inputOtp">
+                <label class="form-label" for="otp">Enter OTP (One Time Password)</label>
+                <input type="password" id="otp" name="otp" class="form-control" />
+              </div>
+              
+              
+              <!-- Submit button -->
+              <div class="form-outline d-none" id="btnOtp">
+                <button type="button" id="submitOtp"  class="btn btn-primary btn-lg mb-3 form-control">
+                    Submit OTP
+                </button>
+              </div>
+
+              <!-- validation error-->
+              <span align="center" class="d-none text-white form-outline bg-danger fw-bold border border-secondary" id="validationFail" name="validationFail" style="display:inline-block; width: 100%;"></span>
+              <br>
+
+              <span align="center" class="d-none text-white form-outline bg-success fw-bold text-center border border-secondary" id="validationSuccess" name="validationSuccess" style="display:inline-block; width: 100%;"></span>
+          </form>
+      </div>
+  </div>
+  </div>
+    </section>
+<script src="/js/reset.js"></script>
+</body>

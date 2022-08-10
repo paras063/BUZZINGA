@@ -1,0 +1,72 @@
+<%-include('../includes/dashHeader.ejs')%>
+    </head>
+    <%-include('../includes/sidebar.ejs')%>
+        <div class="container-fluid mb-4">
+
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800 text-center">
+                    <%=pageHeading%>
+                </h1>
+            </div>
+
+            <div class="card p-5">
+                <div class="row">
+                    <form class="user">
+                        <div class="form-group row">
+                            <div class="col mb-3">
+                                <input type="text" class="form-control form-control-user" id="productName"  placeholder="Product Name" value='<%=product.name?product.name:""%>'/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col mb-3">
+                                <input type="text" class="form-control form-control-user" list="firmList" id="firmId" autocomplete="off"  placeholder="Choose Firm" value='<%=product.firmId._id?product.firmId._id:""%>'/>
+                                <datalist id="firmList">
+                                    <%firms.forEach((firm)=>{%>
+                                        <option value="<%=firm._id%>"><%=firm.name%></option>
+                                    <%})%>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col mb-3">
+                                <textarea type="text" class="form-control form-control-user" id="description"  placeholder="Product Description"><%=product.description?product.description:""%></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3">
+                                <input type="text" class="form-control form-control-user" id="size" value="<%=product.size?product.size:""%>" placeholder="Size"/>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="text" class="form-control form-control-user" id="color"  value="<%=product.color?product.color:""%>" placeholder="Color"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3">
+                                <input type="number" class="form-control form-control-user" id="price"  placeholder="Price" value="<%=product.price?product.price:""%>" min="1"/>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="number" class="form-control form-control-user" id="stock"  placeholder="Quantity" value="<%=product.stock?product.stock:""%>" min='0'/>
+                            </div>
+                        </div>
+                        <button id="submitBtn" class="btn btn-primary btn-user btn-block mb-3">
+                           <%=pageHeading%>
+                        </button>
+                        <input type="hidden" id="edit" value="<%=edit%>">
+                        <input type="hidden" id="productId" value="<%=product._id?product._id:""%>">
+                        
+                        
+                    </form>
+                    <span align="center" class="d-none text-danger form-outline border border-secondary"
+                      id="validationFail" name="validationFail"
+                      style="display:inline-block; width: 100%;background-color: rgb(253, 180, 172);"></span>
+                      <br>
+                      <span align="center" class="d-none text-success form-outline text-center border border-secondary"
+                      id="validationSuccess" name="validationSuccess"
+                      style="display:inline-block; width: 100%; background-color: rgb(172, 253, 172);"></span>
+                </div>
+            </div>
+            </div>
+
+            <script src="/js/product.js"></script>
+            <%- include('../includes/dashFooter.ejs')%>

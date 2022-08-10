@@ -1,0 +1,102 @@
+<%-include('../includes/dashHeader.ejs')%>
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    </head>
+    <%-include('../includes/sidebar.ejs')%>
+        <div class="container-fluid mb-4">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800 text-center">
+                    View Invoices
+                </h1>
+            </div>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Invoice No.</th>
+                                    <th>Created On</th>
+                                    <th>Firm Name</th>
+                                    <th>Seller Name</th>
+                                    <th>Customer Name</th>
+                                    <th>Due Date</th>
+                                    <th>Amount(₹)</th>
+                                    <th>Status</th>
+                                    <th>Send Email</th>
+                                    <th>Update Status</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Invoice No.</th>
+                                    <th>Created On</th>
+                                    <th>Firm Name</th>
+                                    <th>Seller Name</th>
+                                    <th>Customer Name</th>
+                                    <th>Due Date</th>
+                                    <th>Amount(₹)</th>
+                                    <th>Status</th>
+                                    <th>Send Email</th>
+                                    <th>Update Status</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <%invoices.forEach((invoice)=>{%>
+                                    <tr id="invoices">
+                                        <td>
+                                            <div id="invoiceId">
+                                                <%=invoice._id%>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%=invoice.invoiceDate.getDate()+"-"+invoice.invoiceDate.getMonth()+"-"+invoice.invoiceDate.getFullYear()%>
+                                        </td>
+                                        <td>
+                                            <%=invoice.firmId.name%>
+                                        </td>
+                                        <td>
+                                        <%=invoice.sellerId.firstName+" "+invoice.sellerId.lastName%>
+                                        </td>
+                                        <td>
+                                                <%=invoice.customerId.firstName+" "+invoice.customerId.lastName%>
+                                        </td>
+                                        <td>
+                                            <%=invoice.dueDate.getDate()+"-"+invoice.dueDate.getMonth()+"-"+invoice.dueDate.getFullYear()%>
+                                        </td>
+                                        <td>
+                                            <%="₹"+invoice.totalAmt%>
+                                        </td>
+                                        <td>
+                                            <%=invoice.status%>
+                                        </td>
+                                        <td>
+                                            <button type="button" id="mailInvoice" value="<%=invoice.customerId.email%>"
+                                            class="btn btn-user btn-info btn-block">Email</button>
+                                        </td>
+                                        <td>
+                                            <select class="d-none" id="selectStatus">
+                                                <option hidden selected></option>
+                                                <option value="paid">paid</option>
+                                                <option value="unpaid">unpaid</option>
+                                                <option value="overdue">overdue</option>
+                                            </select>
+                                            <button type="button" id="changeStatus"
+                                                class="btn btn-user btn-warning btn-block ">Change</button></td>
+                                    </tr>
+                                    <% });%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-include('../includes/dashFooter.ejs')%>
+            <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="/js/demo/datatables-demo.js"></script>
+            <script src="/js/viewInvoice.js"></script>
+            </body>
+
+            </html>
