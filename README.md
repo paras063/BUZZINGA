@@ -57,6 +57,10 @@ USER PROFILE
 ![image](https://user-images.githubusercontent.com/74768389/183909758-eb394f73-274f-4915-8567-eed69204daed.png)
 
 
+PRINT INVOICE
+![image](https://github.com/paras063/BUZZINGA/assets/74768389/e662e0e7-ee1c-47c7-acf8-7c8b89ad5ea7)
+
+
 
 
 
