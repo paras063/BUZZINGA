@@ -23,6 +23,9 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+
+
+
 //session
 app.use(
   session({
@@ -35,6 +38,18 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use((req, res, next) => {
+  // Check if there is a session
+  if (req.session) {
+    // Store the previous URL in the session
+    req.session.previousUrl = req.originalUrl || "/"; // Default to "/" if no originalUrl is found
+  }
+  // Continue to the next middleware
+  next();
+});
+
+
 
 // DB connection
 mongoose.connect(

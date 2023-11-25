@@ -1,0 +1,155 @@
+<%- include('../includes/dashHeader.ejs')%>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .invoice {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .header {
+    text-align: center;
+    font-size: 32px; /* Increase the font size */
+    margin-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+        
+        .info-column {
+    flex: 1;
+    margin-right: 20px; /* Adjust the spacing between columns */
+}
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .total {
+            margin-top: 30px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .custom-spacing p {
+    margin-bottom: 5px; /* Adjust the margin as needed */
+    margin-left: 25px;
+}
+    </style>
+</head>
+<body>
+
+    <div class="invoice">
+        <div class="header bg-gradient-primary text-white d-flex align-items-center justify-content-center">
+            <div class="sidebar-brand-icon">
+                <i class="fa-solid fa-business-time"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3 fs-5">BUZZINGA</div>
+        </div>
+
+        <div class="info border py-2 px-3">
+            <div ><h1 class="text-capitalize fw-bolder text-gray-800"><%=invoice.firmId.name %></h1></div>
+            <h6 class="text-gray-800 custom-spacing border-left py-2" >
+                <p class="fs-5">Company Details:</p>
+                <p>Email: <%= invoice.firmId.email %></p>
+                <p>Contact No: <%= invoice.firmId.contact %></p>
+                <p>Address: <%= invoice.firmId.address.address %>, <%= invoice.firmId.address.city %>, <%= invoice.firmId.address.state %>, <%= invoice.firmId.address.country %> - <%= invoice.firmId.address.pincode %></p>
+                <p>GST No: <%= invoice.firmId.gstNo %></p>
+            </h6>
+            
+        </div>
+
+        <div class="info text-gray-800">
+            <div class="flex-column">
+                <div class="fs-5">Seller Details:</div>
+                <div>Name: <%= invoice.sellerId.firstName %> <%= invoice.sellerId.lastName %></div>
+                <div>Contact No: <%= invoice.sellerId.contact %></div>
+            </div>
+            <div class="flex-column text-right">
+                <div class="fs-5">Customer Details:</div>
+                <div>Name: <%= invoice.customerId.firstName %> <%= invoice.customerId.lastName %></div>
+                <div>Contact No: <%= invoice.customerId.contact %></div>
+                <div>Email: <%= invoice.customerId.email %></div>
+                <div>Address: <%= invoice.customerId.address.address %>, <%= invoice.customerId.address.city %>, <%= invoice.customerId.address.state %>, <%= invoice.customerId.address.country %> - <%= invoice.customerId.address.pincode %></div>
+            </div>
+            
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% invoice.items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.unitPrice %></td>
+                        <td><%= item.itemTotal %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <div class="total fw-bold fs-5">
+            <p class="text-danger fw-bold">Tax: <%= invoice.tax %>%</p>
+            <p class="text-primary fw-bold">Discount: <%= invoice.discount %>%</p>
+            <p class="text-success fw-bold">Total Amount: ⟨₹⟩ <%= invoice.totalAmt %></p>
+        </div>
+
+        <div class="footer text-dark">
+            <p>Status: <%= invoice.status %></p>
+            <p>Note: <%= invoice.note %></p>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-block" id="downloadBtn">Print PDF</button>
+    <script>
+        document.querySelector('#downloadBtn').addEventListener('click', () => {
+             // Clone the body element
+            const elementToPrint = document.body.cloneNode(true);
+
+            // Remove the download button from the cloned element
+            const downloadBtn = elementToPrint.querySelector('#downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.parentNode.removeChild(downloadBtn);
+            }
+        const options = {
+                margin: 10,
+                filename: `invoice-${Math.random(8)}`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 }, // Set the scale (DPI)
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            };
+        html2pdf(elementToPrint,options);
+
+    });
+    </script>
+</body>
+</html>

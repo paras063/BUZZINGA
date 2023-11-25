@@ -56,6 +56,7 @@ router.post('/firm',[
 
 // Invoice routes
 router.get('/addInvoice',isAuth,invoice.getInvoice);
+router.get('/printInvoice/:invoiceID',isAuth,invoice.printInvoice);
 router.get('/getItems/:firmId',isAuth,invoice.getItems);
 router.post('/addInvoice',isAuth,[
   check('invoiceDate')
@@ -293,3 +294,4 @@ router.post('/addEmployee',isAuth,isOwner,[
 
 module.exports = router;
 // 
+

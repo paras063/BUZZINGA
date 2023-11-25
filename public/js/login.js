@@ -41,7 +41,7 @@ btnSignIn.addEventListener('click',(e)=>{
           validationFail.classList.add('d-none')
           setTimeout(() => {
             location.reload();
-          }, 3000);
+          }, 800);
         }
       });
 })

@@ -25,6 +25,7 @@
                                     <th>Status</th>
                                     <th>Send Email</th>
                                     <th>Update Status</th>
+                                    <th>View Invoice</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -39,6 +40,7 @@
                                     <th>Status</th>
                                     <th>Send Email</th>
                                     <th>Update Status</th>
+                                    <th>View Invoice</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -72,7 +74,7 @@
                                         </td>
                                         <td>
                                             <button type="button" id="mailInvoice" value="<%=invoice.customerId.email%>"
-                                            class="btn btn-user btn-info btn-block">Email</button>
+                                            class="btn btn-user btn-block btn-info ">Email</button>
                                         </td>
                                         <td>
                                             <select class="d-none" id="selectStatus">
@@ -83,6 +85,9 @@
                                             </select>
                                             <button type="button" id="changeStatus"
                                                 class="btn btn-user btn-warning btn-block ">Change</button></td>
+                                                <td>
+                                                    <button type="button" id="printInvoice" class="btn btn-user btn-primary btn-block">Print</button>
+                                                </td>
                                     </tr>
                                     <% });%>
                             </tbody>

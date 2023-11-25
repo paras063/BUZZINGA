@@ -5,7 +5,14 @@ for(const invoice of invoices){
 const changeStatusBtn=invoice.querySelector("#changeStatus");
 const mailInvoice=invoice.querySelector("#mailInvoice");
 const invoiceId = invoice.querySelector("#invoiceId").innerHTML;
+const printInvoiceBtn = invoice.querySelector("#printInvoice");
 
+printInvoiceBtn.addEventListener("click",()=>{
+  const invoiceID = invoiceId.trim()
+   console.log(invoiceId);
+  location.replace(`/printInvoice/${invoiceID}`);
+  
+})
 
 changeStatusBtn.addEventListener("click",()=>{
   const status = invoice.querySelector("#selectStatus");
@@ -46,7 +53,6 @@ mailInvoice.addEventListener("click",(e)=>{
         }
       })
 })
-
 }
 }
 
